@@ -1,0 +1,28 @@
+{
+  "name": "Salesforce",
+  "slug": "salesforce",
+  "url": "http://www.salesforce.com",
+  "auth_types": {
+    "SOAP": {
+      "setup_help": "./samples/gettingStartedSasic.md",
+      "requires_signing": true
+    }
+  },
+  "settings": [{
+    "key": "username",
+    "type": "text",
+    "description": "Username",
+    "for_types": ["SOAP"],
+    "required": true
+  }, {
+    "key": "password",
+    "type": "text",
+    "description": "",
+    "for_types": ["SOAP"],
+    "required": true
+  }],
+  "samples": {
+    "getting_started": "./samples/getting_started.js"
+  },
+  "endpoints": {}
+}
