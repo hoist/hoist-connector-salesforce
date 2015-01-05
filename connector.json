@@ -24,5 +24,10 @@
   "samples": {
     "getting_started": "./samples/getting_started.js"
   },
-  "endpoints": {}
+  "endpoints": {
+    "query" : {
+      "sample" : "./samples/query.js",
+      "docs" : "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/"
+    }
+  }
 }
