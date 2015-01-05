@@ -4,7 +4,7 @@
   "url": "http://www.salesforce.com",
   "auth_types": {
     "SOAP": {
-      "setup_help": "./samples/gettingStartedSasic.md",
+      "setup_help": "./samples/gettingStartedSOAP.md",
       "requires_signing": true
     }
   },
