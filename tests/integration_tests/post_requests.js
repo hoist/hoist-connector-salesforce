@@ -67,9 +67,9 @@ describe('SalesforceConnector #post', function () {
     describe('with array', function () {
       describe('with some records having id', function () {
         var creates = [{
-          Name: 'name'
+          Name: 'name3'
         }, {
-          Name: 'name2'
+          Name: 'name4'
         }];
         var updates = [{
           Id: '00G90000002PqvoEAC',
@@ -95,7 +95,6 @@ describe('SalesforceConnector #post', function () {
         });
         it('returns expected update json', function () {
           return expect(response.then(function (result) {
-            console.log(result);
             var res = result[1];
             if(res.isFulfilled()){
               return res.value()
@@ -175,7 +174,6 @@ describe('SalesforceConnector #post', function () {
         });
         it('returns expected create json', function () {
           return expect(response.then(function(json) {
-            console.log(json);
             return [json[0].success, json[1].success];
           }).catch(function (err) {
             console.log("error", err);
