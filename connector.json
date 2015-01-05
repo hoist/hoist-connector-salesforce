@@ -21,7 +21,7 @@
     "required": true
   }],
   "samples": {
-    "getting_started": "./samples/getting_started.js"
+    "getting_started": "./samples/gettingStarted.js"
   },
   "endpoints": {
     "query" : {
