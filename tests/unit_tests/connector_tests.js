@@ -30,6 +30,147 @@ describe('SalesforceConnector', function () {
         .to.have.been.calledWith('SELECT Id, Name FROM Account');
     });
   });
+  describe('#post', function () {
+    describe('with object', function () {
+      describe('with id', function () {
+        var record = {
+          Id: 'id',
+          Name: 'name'
+        };
+        var type = 'type';
+        var response = {};
+        var sobject;
+        before(function () {
+          sobject = connector.conn.sobject(type);
+          sinon.stub(sobject, 'update').returns(BBPromise.resolve(response));
+          return connector.post(type, record);
+        });
+        after(function () {
+          sobject.update.restore();
+        });
+        it('calls sobject.update', function () {
+          expect(sobject.update)
+            .to.have.been.calledWith(record);
+        });
+      });
+      describe('without id', function () {
+        var record = {
+          Name: 'name'
+        };
+        var type = 'type';
+        var response = {};
+        var sobject;
+        before(function () {
+          sobject = connector.conn.sobject(type);
+          sinon.stub(sobject, 'create').returns(BBPromise.resolve(response));
+          return connector.post(type, record);
+        });
+        after(function () {
+          sobject.create.restore();
+        });
+        it('calls sobject.create', function () {
+          expect(sobject.create)
+            .to.have.been.calledWith(record);
+        });
+      });
+    });
+    describe('with array', function () {
+      describe('with some records having id', function () {
+        var creates = [{
+          Name: 'name'
+        }, {
+          Name: 'name2'
+        }];
+        var updates = [{
+          Id: 'id',
+          Name: 'name'
+        }, {
+          Id: 'id',
+          Name: 'name2'
+        }];
+        var records = creates.concat(updates);
+        var type = 'type';
+        var response = {};
+        var sobject;
+        before(function () {
+          sobject = connector.conn.sobject(type);
+          sinon.stub(sobject, 'create').returns(BBPromise.resolve(response));
+          sinon.stub(sobject, 'update').returns(BBPromise.resolve(response));
+          return connector.post(type, records);
+        });
+        after(function () {
+          sobject.update.restore();
+          sobject.create.restore();
+        });
+        it('calls sobject.create', function () {
+          expect(sobject.create)
+            .to.have.been.calledWith(creates);
+        });
+        it('calls sobject.update', function () {
+          expect(sobject.update)
+            .to.have.been.calledWith(updates);
+        });
+      });
+      describe('with all records having id', function () {
+        var records = [{
+          Id: 'id',
+          Name: 'name'
+        }, {
+          Id: 'id',
+          Name: 'name2'
+        }];
+        var type = 'type';
+        var response = {};
+        var sobject;
+        before(function () {
+          sobject = connector.conn.sobject(type);
+          sinon.stub(sobject, 'create').returns(BBPromise.resolve(response));
+          sinon.stub(sobject, 'update').returns(BBPromise.resolve(response));
+          return connector.post(type, records);
+        });
+        after(function () {
+          sobject.update.restore();
+          sobject.create.restore();
+        });
+        it('does not call sobject.create', function () {
+          expect(sobject.create.called)
+            .to.eql(false);
+        });
+        it('calls sobject.update', function () {
+          expect(sobject.update)
+            .to.have.been.calledWith(records);
+        });
+      });
+      describe('with no records having id', function () {
+        var records = [{
+          Name: 'name'
+        }, {
+          Name: 'name2'
+        }];
+        var type = 'type';
+        var response = {};
+        var sobject;
+        before(function () {
+          sobject = connector.conn.sobject(type);
+          sinon.stub(sobject, 'create').returns(BBPromise.resolve(response));
+          sinon.stub(sobject, 'update').returns(BBPromise.resolve(response));
+          return connector.post(type, records);
+        });
+        after(function () {
+          sobject.update.restore();
+          sobject.create.restore();
+        });
+        it('does not call sobject.update', function () {
+          expect(sobject.update.called)
+            .to.eql(false);
+        });
+        it('calls sobject.create', function () {
+          expect(sobject.create)
+            .to.have.been.calledWith(records);
+        });
+      });
+    });
+  });
   describe('#authorize', function () {
     describe('with username and password', function () {
       var options = {
