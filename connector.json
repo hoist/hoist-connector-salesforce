@@ -4,8 +4,7 @@
   "url": "http://www.salesforce.com",
   "auth_types": {
     "SOAP": {
-      "setup_help": "./samples/gettingStartedSOAP.md",
-      "requires_signing": true
+      "setup_help": "./samples/gettingStartedSOAP.md"
     }
   },
   "settings": [{
@@ -17,7 +16,7 @@
   }, {
     "key": "password",
     "type": "text",
-    "description": "",
+    "description": "Password",
     "for_types": ["SOAP"],
     "required": true
   }],
