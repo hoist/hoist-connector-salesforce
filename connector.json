@@ -15,7 +15,7 @@
     "required": true
   }, {
     "key": "password",
-    "type": "text",
+    "type": "password",
     "description": "Password",
     "for_types": ["SOAP"],
     "required": true
