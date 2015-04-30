@@ -41,13 +41,13 @@ describe('SalesforcePoller', function () {
 			sinon.stub(jsforce.Connection.prototype, 'describeGlobal').returns(BBPromise.resolve({
 				sobjects: [{
 					name: 'unqueriedObject',
-					queriable: true
+					queryable: true
 				}, {
 						name: 'unqueriableObject',
-						queriable: false
+						queryable: false
 					}, {
 						name: 'queriedObject',
-						queriable: true
+						queryable: true
 					}]
 			}));
 			stubQuery1 = {
