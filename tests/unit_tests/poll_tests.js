@@ -41,13 +41,19 @@ describe('SalesforcePoller', function () {
 			sinon.stub(jsforce.Connection.prototype, 'describeGlobal').returns(BBPromise.resolve({
 				sobjects: [{
 					name: 'unqueriedObject',
-					queryable: true
+					queryable: true,
+					replicateable: true,
+					updateable: true
 				}, {
 						name: 'unqueriableObject',
-						queryable: false
+						queryable: false,
+						replicateable: true,
+						updateable: true
 					}, {
 						name: 'queriedObject',
-						queryable: true
+						queryable: true,
+						replicateable: true,
+						updateable: true
 					}]
 			}));
 			stubQuery1 = {
@@ -148,7 +154,7 @@ describe('SalesforcePoller', function () {
 		it('queries for created records', function () {
 			return expect(stubQuery2.find)
 				.to.have.been.calledWith({
-				CreatedDate: { $gte: moment().add(-1, 'd').toISOString() }
+				CreatedDate: { $gte: new jsforce.Date(moment().add(-1, 'd').toISOString()) }
 			});
 		});
 		it('saves the ids of queried objects', function () {
