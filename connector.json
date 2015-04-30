@@ -26,7 +26,8 @@
   "endpoints": {
     "query" : {
       "sample" : "./samples/query.js",
-      "docs" : "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/"
+      "docs" : "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/",
+      "subscribe" : true
     }
   }
 }
