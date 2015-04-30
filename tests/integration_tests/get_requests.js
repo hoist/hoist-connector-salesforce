@@ -1,3 +1,4 @@
+/// <reference path="../../typings/node/node.d.ts"/>
 'use strict';
 require('../bootstrap');
 var Salesforce = require('../../lib/connector');
@@ -6,7 +7,7 @@ var path = require('path');
 var expect = require('chai').expect;
 var config = require('config');
 
-describe('SalesforceConnector #get', function () {
+describe.skip('SalesforceConnector #get', function () {
   this.timeout(500000);
   describe('valid connection to get accounts', function () {
     var response;

@@ -1,3 +1,4 @@
+/// <reference path="../../typings/mocha/mocha.d.ts"/>
 'use strict';
 require('../bootstrap');
 var Salesforce = require('../../lib/connector');

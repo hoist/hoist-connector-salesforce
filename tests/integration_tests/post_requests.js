@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 var config = require('config');
 var BBPromise = require('bluebird');
 
-describe('SalesforceConnector #post', function () {
+describe.skip('SalesforceConnector #post', function () {
   this.timeout(500000);
   describe('valid connection to update/create Groups', function () {
     describe('with object', function () {
