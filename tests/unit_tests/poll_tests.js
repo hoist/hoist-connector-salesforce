@@ -25,7 +25,8 @@ describe('SalesforcePoller', function () {
 				subscription: {
 					_id: 'subscription_id',
 					get: sinon.stub(),
-					set: sinon.stub()
+					set: sinon.stub(),
+					delayTill: sinon.stub()
 				},
 				settings: {
 
