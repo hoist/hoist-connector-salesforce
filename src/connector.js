@@ -1,5 +1,4 @@
 'use strict';
-
 var BBPromise = require('bluebird');
 var logger = require('@hoist/logger');
 // var errors = require('hoist-errors');
@@ -19,12 +18,18 @@ function SalesforceConnector(settings) {
   // this.conn.login(settings.username, settings.password);
   var fs = _.filter(_.functions(jsforce.Connection.prototype), function (f) {
     f = f.toLowerCase();
-    return !_.startsWith(f, '_') && !_.endsWith(f, '$') && !_.includes(f, 'login') && !_.includes(f, 'logout') && !_.includes(f, 'authorize') && !_.includes(f, 'listener') && f !== 'on' && f !== 'once';
+    return (!_.startsWith(f, '_')) &&
+      !_.endsWith(f, '$') &&
+      !_.includes(f, 'login') &&
+      !_.includes(f, 'logout') &&
+      !_.includes(f, 'authorize') &&
+      !_.includes(f, 'listener') &&
+      f !== 'on' && f !== 'once';
   });
   var self = this;
   _.forEach(fs, function (f) {
     if (!self[f]) {
-      console.log('wrapping f', f);
+      console.log('wrapping f',f);
       self[f] = function wrapConnector() {
         return self.conn[f].apply(self.conn, Array.prototype.slice.call(arguments));
       };
@@ -85,4 +90,3 @@ SalesforceConnector.prototype.authorize = function (settings) {
 };
 
 module.exports = SalesforceConnector;
-//# sourceMappingURL=connector.js.map
