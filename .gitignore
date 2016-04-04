@@ -47,3 +47,5 @@ config/runtime.json
 
 .npmrc
 spike.js
+lib
+code-docs/*
